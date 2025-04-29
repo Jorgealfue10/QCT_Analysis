@@ -44,7 +44,7 @@ def process_energy_folder(energy_folder, parent_results):
 
                 diff = b_val - bmax_val
                 if not found and diff >= 0.11:
-                    parent_results.append((energy_value, b_val, bmax_val))
+                    parent_results.append((energy_value, b_val, bmax_val*1.0))
                     found = True
 
     # Guardar los Bmax en cada carpeta E
