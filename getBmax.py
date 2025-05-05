@@ -35,7 +35,8 @@ def process_energy_folder(energy_folder, parent_results):
     for b_folder in bmax_dirs:
         b_val = float(os.path.basename(b_folder).split("B")[-1])
         test_file = os.path.join(b_folder, "test_analys.out")
-        
+        print(test_file)
+
         if os.path.isfile(test_file):
             bmax_val = extract_bmax(test_file)
             if bmax_val is not None:
@@ -57,6 +58,7 @@ def main():
     parent_results = []
 
     for energy_folder in sorted(glob.glob("E*")):
+        print(energy_folder)
         if os.path.isdir(energy_folder):
             process_energy_folder(energy_folder, parent_results)
 
