@@ -9,7 +9,7 @@ def extract_values_from_cs_analysis(filepath):
         for line in f:
             if "maximum impact parameter for reaction CA" in line:
                 try:
-                    bmax_line_val = float(line.split()[7])
+                    bmax_line_val = float(line.split()[8])
                 except (ValueError, IndexError):
                     pass
             elif "BMAX=" in line:
