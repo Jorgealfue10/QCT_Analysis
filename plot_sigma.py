@@ -38,7 +38,7 @@ ax.tick_params(axis='both', which='major', labelsize=14)
 sum_sigma = None
 energies = None
 
-for J in range(6):
+for J in range(7):
     file_path = f"J{J}/sigma_by_energy.dat"
     # if J != 4 and os.path.exists(file_path):
     if os.path.exists(file_path):
@@ -60,7 +60,7 @@ for J in range(6):
 
 # Plot total weighted sum
 if sum_sigma is not None and energies is not None:
-    ax.plot(energies, sum_sigma, label='Weighted sum of J=0-5', color='black', linestyle='--', lw=2)
+    ax.plot(energies, sum_sigma, label='Weighted sum of J=0-6', color='black', linestyle='--', lw=2)
 
 if sum_sigma is not None and energies is not None:
     output_data = np.column_stack((energies, sum_sigma))
@@ -70,5 +70,6 @@ if sum_sigma is not None and energies is not None:
 
 ax.legend(frameon=False, fontsize=12)
 fig.tight_layout()
+fig.savefig("cs_wJ_v2.png",dpi=300,transparent=True)
 
 plt.show()

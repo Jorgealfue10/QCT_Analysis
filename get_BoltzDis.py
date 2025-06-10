@@ -50,7 +50,7 @@ ax1.tick_params(axis='both', which='major', labelsize=14)
 
 # Gráfico de distribuciones
 for J in range(nJ):
-    if Jvals[299, J] < 1e-2:
+    if Jvals[299, J] < 1e-4:
         ax2.plot(temps, Jvals[:, J], color=colors[J])
     else:
         ax2.plot(temps, Jvals[:, J], label=f'J={J}', color=colors[J])
@@ -64,5 +64,5 @@ ax2.yaxis.tick_right()
 ax2.legend()
 
 fig.tight_layout()
-fig.savefig('Boltzmann_Distribution_D2.png', dpi=300)
+fig.savefig('Boltzmann_Distribution_D2.png', dpi=300,transparent=True)
 plt.show()
