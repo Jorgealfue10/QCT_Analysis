@@ -30,21 +30,22 @@ Jvals /= sum_QJ
 
 # Initialize plot
 fig, ax = plt.subplots(figsize=(10, 6))
-ax.set_xlabel('Energy (eV)', fontsize=14)
-ax.set_ylabel('Cross Section (a.u.)', fontsize=14)
+ax.set_xlabel(r"E$_{col}$ (eV)", fontsize=14)
+ax.set_ylabel(r"Cross Section ($\AA^2$)", fontsize=14)
 ax.tick_params(axis='both', which='major', labelsize=14)
 
 # Read and plot cross sections
 sum_sigma = None
 energies = None
 
+eigenvalj=[0.191,0.199,0.213,0.235,0.265,0.301,0.344]
+
 for J in range(7):
     file_path = f"J{J}/sigma_by_energy.dat"
-    # if J != 4 and os.path.exists(file_path):
     if os.path.exists(file_path):
         try:
             sigma = get_CS(file_path)
-            energy = sigma[:, 0]
+            energy = sigma[:, 0]+eigenvalj[J]
             cs = sigma[:, 1]
             weighted_cs = cs * Jvals[J]
             if sum_sigma is None:
@@ -52,15 +53,13 @@ for J in range(7):
                 energies = energy.copy()
             else:
                 sum_sigma += weighted_cs
-            ax.plot(energy, cs, label=f'J={J}')
+            ax.plot(energy, cs, label=f'j={J}')
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
-    else:
-        print(f"Skipping {file_path} (not found or J=4)")
 
 # Plot total weighted sum
 if sum_sigma is not None and energies is not None:
-    ax.plot(energies, sum_sigma, label='Weighted sum of J=0-6', color='black', linestyle='--', lw=2)
+    ax.plot(energies, sum_sigma, label='Weighted sum of j=0-6', color='black', linestyle='--', lw=2)
 
 if sum_sigma is not None and energies is not None:
     output_data = np.column_stack((energies, sum_sigma))
