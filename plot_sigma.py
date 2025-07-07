@@ -46,6 +46,7 @@ for J in range(7):
         try:
             sigma = get_CS(file_path)
             energy = sigma[:, 0]+eigenvalj[J]
+            energy = sigma[:, 0] #+eigenvalj[J]
             cs = sigma[:, 1]
             weighted_cs = cs * Jvals[J]
             if sum_sigma is None:
