@@ -11,6 +11,8 @@ energia = dat1TApp[:,0]
 for i in range(len(dat1TApp[:,0])):
     if dat1TAp[i,0] <= 4.0 and dat1TApp[i,0] <= 4.0 and dat2TApp[i,0] <= 4.0:
         aver[i] = (dat1TAp[i,1] + dat1TApp[i,1] + dat2TApp[i,1]) / 3.0
+       #aver[i] = (dat1TAp[i,1]*0.3 + dat1TApp[i,1]*0.4 + dat2TApp[i,1]*0.3)
+       #aver[i] = (dat1TAp[i,1]*0.25 + dat1TApp[i,1]*0.5 + dat2TApp[i,1]*0.25)
 
 # Guardar resultado
 resultado = np.column_stack((energia, aver))
